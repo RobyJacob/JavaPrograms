@@ -7,22 +7,26 @@ public class ForkJoinDemo {
 
     static class ForkJoinJob {
         ArrayList<Thread> threads;
+        int i = 0;
 
         ForkJoinJob(int threadCount) {
             threads = new ArrayList<>(threadCount);
         }
 
-        public void run() throws InterruptedException {
-            final int[] i = {0};
+        private synchronized void print() {
+            System.out.println(Thread.currentThread().getName() + " : " + i);
+            i++;
+        }
 
-            while (i[0] < 10) {
-                System.out.println(Thread.currentThread().getName() + " : " + i[0]++);
+        public void run() throws InterruptedException {
+            while (i < 10) {
+                print();
             }
 
             for (int j = 0; j < 4; j++) {
                 threads.add(new Thread(() -> {
-                    while (i[0] < 40) {
-                        System.out.println(Thread.currentThread().getName() + " : " + i[0]++);
+                    while (i < 40) {
+                        print();
                     }
                 }));
             }
@@ -32,8 +36,8 @@ public class ForkJoinDemo {
                 thread.join();
             }
 
-            while (i[0] < 100) {
-                System.out.println(Thread.currentThread().getName() + " : " + i[0]++);
+            while (i < 100) {
+                print();
             }
         }
     }
