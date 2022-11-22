@@ -8,7 +8,7 @@ public class GenerateValidParanthesis {
             return;
         }
 
-        if (open < n) {
+        if (open <= n) {
             cur.append("(");
             generateValidParanthesis(cur, res, open + 1, close, n);
             cur.deleteCharAt(cur.length() - 1);
@@ -22,11 +22,11 @@ public class GenerateValidParanthesis {
     }
 
     public static void main(String[] args) {
-        int n = 10;
+        int n = 3;
 
         List<String> res = new ArrayList<>();
 
-        generateValidParanthesis(new StringBuilder(), res, 0, 0, n);
+        generateValidParanthesis(new StringBuilder(), res, 1, 1, n);
 
         System.out.println(res);
     }
