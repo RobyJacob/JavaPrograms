@@ -1,24 +1,12 @@
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-class TreeNode {
-    int val;
-    TreeNode left;
-    TreeNode right;
-    TreeNode(int x) {
-        val = x;
-        left=null;
-        right=null;
-    }
-}
-
 public class BuildTree {
-    static TreeNode buildTree(List<Integer> inorder, List<Integer> postorder, int st, int end, int pos) {
+    static Tree buildTree(List<Integer> inorder, List<Integer> postorder, int st, int end, int pos) {
         if (st > end) return null;
-        if (st == end) return new TreeNode(inorder.get(st));
+        if (st == end) return new Tree(inorder.get(st));
 
-        TreeNode root = new TreeNode(postorder.get(pos));
+        Tree root = new Tree(postorder.get(pos));
 
         int idx = -1;
 
