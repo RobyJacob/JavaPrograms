@@ -13,7 +13,10 @@ public class RateLimiter {
                 res.add(true);
             } else {
                 Queue<Integer> queue = reqs.get(clientId);
-                while (Math.abs(times.get(i) - queue.peek()) >= 10) queue.poll();
+                while (!queue.isEmpty()) {
+                    if (Math.abs(times.get(i) - queue.peek()) >= 10) queue.poll();
+                    else break;
+                }
                 if (reqs.get(clientId).size() < 3) {
                     res.add(true);
                     reqs.get(clientId).add(times.get(i));
