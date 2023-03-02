@@ -4,7 +4,7 @@ import java.util.List;
 
 public class ConsecutiveArray {
     static boolean isConsecutiveArray(List<Integer> arr) {
-        int minVal = Collections.min(arr), maxVal = Collections.max(arr);
+        int minVal = Collections.min(arr);
         int total = (arr.size() * (2 * minVal + (arr.size() - 1))) / 2;
 
         for (int num : arr) {
